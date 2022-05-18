@@ -1,0 +1,171 @@
+-- Indsæt data om mulige rabater
+insert into sune.rabat(medlemskab,rabatter)
+	values
+		('FDM',0.9),
+        ('Online',0.88); 
+        
+-- Indæst data om alle kunder oprettet i systemet
+insert into sune.kunder(kundeID,kundeNavn,kundeTLF,kundeADR,kundeMail,kundeInfo)
+	values
+		(1,'Sune Malling',31900165,'ahorn alle 3 4100 ringsted','sune3978@zbc.dk','ADHD'),
+		(2,'Casper Hassing',12345678,'ahorn alle 3 4100 ringsted','casper@friendlyghost.dk','Trist'),
+        (3,'Magnus Nielsen',23456789,'ahorn alle 3 4100 ringsted','magnus@syg.dk','Syg'),
+        (4,'Nicolaj Wiebking',87654321,'ahorn alle 3 4100 ringsted','nicolaj@std.dk','std'),
+        (5,'Pave Francis',42069420,'Vatican eller noget','pave@shitlord.dk','Paven manden selv all hail');
+
+-- Indsæt data om by og postnumre
+insert into sune.postnummer(postnr,city) 
+    values 
+        (1111,'Bispeborg'),
+        (2222,'Hjemby'),
+        (3333,'Lilleby'),
+        (4444,'Borgerslev'),
+        (6666,'Roslev');
+
+--  Indsæt data om alle hoteller
+insert into sune.hoteller(hotelID,hotelNavn,Adresse,postnr) 
+    values
+        (1,'The Pope','Vatikangade 1 Bispeborg',1111),
+        (2,'Lucky Star','Bredgade 12  Hjemby',2222),
+        (3,'Discount','Billigvej 7 Lilleby',3333),
+        (4,'deLuxe Kapital','Avenue 99 Borgerslev',4444),
+        (5,'Discount','Billiggade 12 Roslev',6666);
+
+-- Indsæt data om alle ansatte på hotel 1
+insert into sune.personale(hotelID,personale_nr,personale_navn,personale_job)
+	values 
+		(1,1,'Jens Jensen','Rengoring'),
+        (1,2,'Magnus Magnussen','Rengoring'),
+        (1,3,'Niels Nielsen','Rengoring'),
+        (1,4,'Klaus Klausen','Leder'),
+        (1,5,'Hans Hansen','Leder'),
+        (1,6,'Jørgen Jørgensen','reception'),
+        (1,7,'Peter Petersen','reception'),
+        (1,8,'Morten Mortensen','reception'),
+        (1,9,'Mogens Mogensen','reception'),
+        (1,10,'Kristian Kristiansen','reception'),
+        (1,11,'Claus Clausen','reception'),
+        (1,12,'Cristian Cristiansen','reception'),
+        (1,13,'Christian Christiansen','reception'),
+        (1,14,'Pernille Skipper','Kokken'),
+        (1,15,'Xander Grimby','Kokken'),
+        (1,16,'Anne Valentina','Kokken'),
+        (1,17,'Louise Schack','Kokken'),
+        (1,18,'Rasmus Holm','Kokken'),
+        (1,19,'Simon Emil','Kokken'),
+        (1,20,'Pia Olsen','Kokken'),
+        (1,21,'Lars Aslan','Kokken');
+
+-- Indsæt data om alle rum på alle hoteller
+insert into sune.rum(hotelID,rum_nr,rum_type,rum_pris) 
+	values 
+		(1,1,'D',200),
+		(1,2,'D',200),
+		(1,11,'S',150),
+		(1,21,'F',220),
+		(2,1,'D',230),
+		(2,2,'D',230),
+		(2,11,'S',180),
+		(2,21,'F',300),
+		(3,1,'D',175),
+		(5,2,'D',170);
+
+-- Indsæt data om konference rummet
+insert into sune.konference(hotelID,konference_rum,konference_udstyr)
+	values
+		(1,1,'Alt inkluderet');
+	
+-- Indsæt data om alle cykler
+insert into sune.cykel(hotelID,cykel_nr,cykel_kode,cykel_type,cykel_pris)
+	values
+		(1,1,1234,'EL',100),
+        (1,2,1234,'EL',100),
+        (1,3,1234,'EL',100),
+        (1,4,1234,'EL',100),
+        (1,5,1234,'EL',100),
+        (1,6,1234,'LAD',100),
+        (1,7,1234,'LAD',100),
+        (1,8,1234,'LAD',100),
+        (1,9,1234,'LAD',100),
+		(1,10,1234,'LAD',100),
+		(2,11,1234,'EL',100),
+        (2,12,1234,'EL',100),
+        (2,13,1234,'EL',100),
+        (2,14,1234,'EL',100),
+        (2,15,1234,'EL',100),
+        (2,16,1234,'LAD',100),
+        (2,17,1234,'LAD',100),
+        (2,18,1234,'LAD',100),
+        (2,19,1234,'LAD',100),
+		(2,20,1234,'LAD',100),
+		(3,21,1234,'EL',100),
+        (3,22,1234,'EL',100),
+        (3,23,1234,'EL',100),
+        (3,24,1234,'EL',100),
+        (3,25,1234,'EL',100),
+        (3,26,1234,'LAD',100),
+        (3,27,1234,'LAD',100),
+        (3,28,1234,'LAD',100),
+        (3,29,1234,'LAD',100),
+		(3,30,1234,'LAD',100),
+		(4,31,1234,'EL',100),
+        (4,32,1234,'EL',100),
+        (4,33,1234,'EL',100),
+        (4,34,1234,'EL',100),
+        (4,35,1234,'EL',100),
+        (4,36,1234,'LAD',100),
+        (4,37,1234,'LAD',100),
+        (4,38,1234,'LAD',100),
+        (4,39,1234,'LAD',100),
+		(4,40,1234,'LAD',100),
+        (5,41,1234,'EL',100),
+        (5,42,1234,'EL',100),
+        (5,43,1234,'EL',100),
+        (5,44,1234,'EL',100),
+        (5,45,1234,'EL',100),
+        (5,46,1234,'LAD',100),
+        (5,47,1234,'LAD',100),
+        (5,48,1234,'LAD',100),
+        (5,49,1234,'LAD',100),
+		(5,50,1234,'LAD',100);
+
+-- Indsæt data for booking af konference rum
+insert into sune.konference_booking(kbookingID,kundeID,hotelID,konference_rum,konference_udstyr,konference_behov,kbooking_start,kbooking_slut)
+	values 
+		(1,5,1,1,'Alt inkluderet','Vand skal uddelles til alle','2020-12-23','2020-12-29');
+        
+-- Indsæt dara for booking af hotel værelse
+insert into sune.bookinger(bookingID,kundeID,hotelID,rum_nr,booking_start,booking_slut)
+	values
+		(1,1,1,1,'2020-12-16','2020-12-20'),
+        (2,5,1,21,'2020-12-23','2020-12-29');
+	
+-- Indsæt data for booking af cykel
+insert into sune.cykel_booking(cbookingID,kundeID,hotelID,cykel_nr,cykel_type,cykel_kode,cbooking_start,cbooking_slut)
+	values
+		(1,1,1,1,'EL',1234,'2020-12-16','2020-12-20');
+
+
+-- Tjek pavens kunde ID og find alle bokkinger lavet under hans kundeID
+-- select * from sune.bookinger where kundeID=5;
+
+-- Tjek pavens kunde ID og find alle værelses bokkinger lavet under hans kundeID
+-- select * from sune.cykel_booking where kundeID=5;
+
+-- Tjek konference booking fra paven
+-- select * from sune.konference_booking where kundeID=5;
+
+-- Tjek om en cykel er udleget
+-- select * from sune.cykel_booking where hotelID=1 and cykel_nr=1 and '2020-12-16' between cbooking_start and cbooking_slut 
+-- 																   or '2020-12-21' between cbooking_start and cbooking_slut;
+
+-- Tjek om et rum er ledigt i et tidrum
+-- select * from sune.bookinger where hotelID=1 and rum_nr=1 and ('2020-12-23' >= booking_start) and ('2020-12-21' <= booking_slut);
+  
+-- Tjek pris baseret på defineret rabatter
+-- select hotelID,rum_nr,round(rum_pris*rabatter),medlemskab from sune.rum,sune.rabat where medlemskab='Online';
+
+-- Tjek tabeller udskift 'bookinger' med den tabel du vil tjekke
+-- select * from sune.bookinger;
+
+
