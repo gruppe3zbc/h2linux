@@ -163,7 +163,7 @@ insert into sune.cykel_booking(cbookingID,kundeID,hotelID,cykel_nr,cykel_type,cy
 -- select * from sune.bookinger where hotelID=1 and rum_nr=1 and ('2020-12-23' >= booking_start) and ('2020-12-21' <= booking_slut);
   
 -- Tjek pris baseret på defineret rabatter
--- select hotelID,rum_nr,round(rum_pris*rabatter),medlemskab from sune.rum,sune.rabat where medlemskab='Online';
+-- select hotelID,rum_nr,round(rum_pris*rabatter,0),medlemskab from sune.rum,sune.rabat where medlemskab='Online';
 
 -- Tjek tabeller udskift 'bookinger' med den tabel du vil tjekke
 -- select * from sune.bookinger;
