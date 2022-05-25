@@ -1,0 +1,328 @@
+USE [sune]
+GO
+/****** Object:  Schema [sune]    Script Date: 24-05-2022 11:34:41 ******/
+CREATE SCHEMA [sune]
+GO
+/****** Object:  Table [sune].[bookinger]    Script Date: 24-05-2022 11:34:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [sune].[bookinger](
+	[bookingID] [int] NOT NULL,
+	[kundeID] [int] NOT NULL,
+	[hotelID] [int] NOT NULL,
+	[rum_nr] [int] NOT NULL,
+	[booking_start] [date] NOT NULL,
+	[booking_slut] [date] NOT NULL,
+ CONSTRAINT [PK_bookinger_booking_start] PRIMARY KEY CLUSTERED 
+(
+	[booking_start] ASC,
+	[booking_slut] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [bookinger$bookingID] UNIQUE NONCLUSTERED 
+(
+	[bookingID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [sune].[cykel]    Script Date: 24-05-2022 11:34:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [sune].[cykel](
+	[hotelID] [int] NOT NULL,
+	[cykel_nr] [int] NOT NULL,
+	[cykel_kode] [int] NOT NULL,
+	[cykel_type] [nvarchar](3) NOT NULL,
+	[cykel_pris] [int] NOT NULL,
+	[cykel_ledig] [smallint] NOT NULL,
+ CONSTRAINT [PK_cykel_cykel_nr] PRIMARY KEY CLUSTERED 
+(
+	[cykel_nr] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [sune].[cykel_booking]    Script Date: 24-05-2022 11:34:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [sune].[cykel_booking](
+	[cbookingID] [int] NOT NULL,
+	[kundeID] [int] NOT NULL,
+	[hotelID] [int] NOT NULL,
+	[cykel_nr] [int] NOT NULL,
+	[cykel_type] [nvarchar](3) NOT NULL,
+	[cykel_kode] [int] NOT NULL,
+	[cbooking_start] [date] NOT NULL,
+	[cbooking_slut] [date] NOT NULL,
+ CONSTRAINT [PK_cykel_booking_cbookingID] PRIMARY KEY CLUSTERED 
+(
+	[cbookingID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [sune].[hoteljob]    Script Date: 24-05-2022 11:34:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [sune].[hoteljob](
+	[hotelID] [int] NOT NULL,
+	[hotel_rengoring] [nvarchar](30) NOT NULL,
+	[hotel_leder] [nvarchar](30) NOT NULL,
+	[hotel_reception] [nvarchar](30) NOT NULL,
+	[hotel_kokken] [nvarchar](30) NOT NULL,
+	[hotel_jobledig] [smallint] NOT NULL,
+ CONSTRAINT [PK_hoteljob_hotel_jobledig] PRIMARY KEY CLUSTERED 
+(
+	[hotel_jobledig] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [sune].[hoteller]    Script Date: 24-05-2022 11:34:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [sune].[hoteller](
+	[hotelID] [int] NOT NULL,
+	[hotelNavn] [nvarchar](30) NOT NULL,
+	[Adresse] [nvarchar](30) NOT NULL,
+	[postnr] [int] NOT NULL,
+ CONSTRAINT [PK_hoteller_hotelID] PRIMARY KEY CLUSTERED 
+(
+	[hotelID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [sune].[konference]    Script Date: 24-05-2022 11:34:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [sune].[konference](
+	[hotelID] [int] NOT NULL,
+	[konference_rum] [int] NOT NULL,
+	[konference_udstyr] [nvarchar](20) NOT NULL,
+	[konference_ledig] [smallint] NOT NULL,
+ CONSTRAINT [PK_konference_konference_rum] PRIMARY KEY CLUSTERED 
+(
+	[konference_rum] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [sune].[konference_booking]    Script Date: 24-05-2022 11:34:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [sune].[konference_booking](
+	[kbookingID] [int] NOT NULL,
+	[kundeID] [int] NOT NULL,
+	[hotelID] [int] NOT NULL,
+	[konference_rum] [int] NOT NULL,
+	[konference_udstyr] [nvarchar](20) NOT NULL,
+	[konference_behov] [nvarchar](50) NOT NULL,
+	[kbooking_start] [date] NOT NULL,
+	[kbooking_slut] [date] NOT NULL,
+ CONSTRAINT [PK_konference_booking_kbookingID] PRIMARY KEY CLUSTERED 
+(
+	[kbookingID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [sune].[kunder]    Script Date: 24-05-2022 11:34:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [sune].[kunder](
+	[kundeID] [int] NOT NULL,
+	[kundeNavn] [nvarchar](50) NOT NULL,
+	[kundeTLF] [int] NOT NULL,
+	[kundeADR] [nvarchar](30) NOT NULL,
+	[kundeMail] [nvarchar](30) NOT NULL,
+	[kundeInfo] [nvarchar](50) NOT NULL,
+	[medlemskab] [nvarchar](20) NULL,
+ CONSTRAINT [PK_kunder_kundeID] PRIMARY KEY CLUSTERED 
+(
+	[kundeID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [kunder$kundeMail] UNIQUE NONCLUSTERED 
+(
+	[kundeMail] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [kunder$kundeTLF] UNIQUE NONCLUSTERED 
+(
+	[kundeTLF] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [sune].[personale]    Script Date: 24-05-2022 11:34:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [sune].[personale](
+	[hotelID] [int] NOT NULL,
+	[personale_nr] [int] NOT NULL,
+	[personale_navn] [nvarchar](30) NOT NULL,
+	[personale_job] [nvarchar](30) NOT NULL,
+ CONSTRAINT [PK_personale_personale_nr] PRIMARY KEY CLUSTERED 
+(
+	[personale_nr] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [sune].[postnummer]    Script Date: 24-05-2022 11:34:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [sune].[postnummer](
+	[postnr] [int] NOT NULL,
+	[city] [nvarchar](30) NOT NULL,
+ CONSTRAINT [PK_postnummer_postnr] PRIMARY KEY CLUSTERED 
+(
+	[postnr] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [sune].[rabat]    Script Date: 24-05-2022 11:34:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [sune].[rabat](
+	[medlemskab] [nvarchar](20) NOT NULL,
+	[rabatter] [real] NULL,
+ CONSTRAINT [PK_rabat_medlemskab] PRIMARY KEY CLUSTERED 
+(
+	[medlemskab] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [sune].[rum]    Script Date: 24-05-2022 11:34:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [sune].[rum](
+	[hotelID] [int] NOT NULL,
+	[rum_nr] [int] NOT NULL,
+	[rum_type] [nvarchar](1) NOT NULL,
+	[rum_pris] [int] NOT NULL,
+	[rum_ledig] [smallint] NOT NULL,
+ CONSTRAINT [PK_rum_rum_nr] PRIMARY KEY CLUSTERED 
+(
+	[rum_nr] ASC,
+	[hotelID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [sune].[kunder] ADD  DEFAULT (NULL) FOR [medlemskab]
+GO
+ALTER TABLE [sune].[rabat] ADD  DEFAULT (NULL) FOR [rabatter]
+GO
+ALTER TABLE [sune].[bookinger]  WITH NOCHECK ADD  CONSTRAINT [bookinger$bookinger_ibfk_1] FOREIGN KEY([kundeID])
+REFERENCES [sune].[kunder] ([kundeID])
+GO
+ALTER TABLE [sune].[bookinger] CHECK CONSTRAINT [bookinger$bookinger_ibfk_1]
+GO
+ALTER TABLE [sune].[bookinger]  WITH NOCHECK ADD  CONSTRAINT [bookinger$bookinger_ibfk_2] FOREIGN KEY([hotelID])
+REFERENCES [sune].[hoteller] ([hotelID])
+GO
+ALTER TABLE [sune].[bookinger] CHECK CONSTRAINT [bookinger$bookinger_ibfk_2]
+GO
+ALTER TABLE [sune].[cykel]  WITH NOCHECK ADD  CONSTRAINT [cykel$cykel_ibfk_1] FOREIGN KEY([hotelID])
+REFERENCES [sune].[hoteller] ([hotelID])
+GO
+ALTER TABLE [sune].[cykel] CHECK CONSTRAINT [cykel$cykel_ibfk_1]
+GO
+ALTER TABLE [sune].[cykel_booking]  WITH NOCHECK ADD  CONSTRAINT [cykel_booking$cykel_booking_ibfk_1] FOREIGN KEY([kundeID])
+REFERENCES [sune].[kunder] ([kundeID])
+GO
+ALTER TABLE [sune].[cykel_booking] CHECK CONSTRAINT [cykel_booking$cykel_booking_ibfk_1]
+GO
+ALTER TABLE [sune].[cykel_booking]  WITH NOCHECK ADD  CONSTRAINT [cykel_booking$cykel_booking_ibfk_2] FOREIGN KEY([hotelID])
+REFERENCES [sune].[hoteller] ([hotelID])
+GO
+ALTER TABLE [sune].[cykel_booking] CHECK CONSTRAINT [cykel_booking$cykel_booking_ibfk_2]
+GO
+ALTER TABLE [sune].[cykel_booking]  WITH NOCHECK ADD  CONSTRAINT [cykel_booking$cykel_booking_ibfk_3] FOREIGN KEY([cykel_nr])
+REFERENCES [sune].[cykel] ([cykel_nr])
+GO
+ALTER TABLE [sune].[cykel_booking] CHECK CONSTRAINT [cykel_booking$cykel_booking_ibfk_3]
+GO
+ALTER TABLE [sune].[hoteljob]  WITH NOCHECK ADD  CONSTRAINT [hoteljob$hoteljob_ibfk_1] FOREIGN KEY([hotelID])
+REFERENCES [sune].[hoteller] ([hotelID])
+GO
+ALTER TABLE [sune].[hoteljob] CHECK CONSTRAINT [hoteljob$hoteljob_ibfk_1]
+GO
+ALTER TABLE [sune].[hoteller]  WITH NOCHECK ADD  CONSTRAINT [hoteller$hoteller_ibfk_1] FOREIGN KEY([postnr])
+REFERENCES [sune].[postnummer] ([postnr])
+GO
+ALTER TABLE [sune].[hoteller] CHECK CONSTRAINT [hoteller$hoteller_ibfk_1]
+GO
+ALTER TABLE [sune].[konference]  WITH NOCHECK ADD  CONSTRAINT [konference$konference_ibfk_1] FOREIGN KEY([hotelID])
+REFERENCES [sune].[hoteller] ([hotelID])
+GO
+ALTER TABLE [sune].[konference] CHECK CONSTRAINT [konference$konference_ibfk_1]
+GO
+ALTER TABLE [sune].[konference_booking]  WITH NOCHECK ADD  CONSTRAINT [konference_booking$konference_booking_ibfk_1] FOREIGN KEY([kundeID])
+REFERENCES [sune].[kunder] ([kundeID])
+GO
+ALTER TABLE [sune].[konference_booking] CHECK CONSTRAINT [konference_booking$konference_booking_ibfk_1]
+GO
+ALTER TABLE [sune].[konference_booking]  WITH NOCHECK ADD  CONSTRAINT [konference_booking$konference_booking_ibfk_2] FOREIGN KEY([hotelID])
+REFERENCES [sune].[hoteller] ([hotelID])
+GO
+ALTER TABLE [sune].[konference_booking] CHECK CONSTRAINT [konference_booking$konference_booking_ibfk_2]
+GO
+ALTER TABLE [sune].[konference_booking]  WITH NOCHECK ADD  CONSTRAINT [konference_booking$konference_booking_ibfk_3] FOREIGN KEY([konference_rum])
+REFERENCES [sune].[konference] ([konference_rum])
+GO
+ALTER TABLE [sune].[konference_booking] CHECK CONSTRAINT [konference_booking$konference_booking_ibfk_3]
+GO
+ALTER TABLE [sune].[kunder]  WITH NOCHECK ADD  CONSTRAINT [kunder$kunder_ibfk_1] FOREIGN KEY([medlemskab])
+REFERENCES [sune].[rabat] ([medlemskab])
+GO
+ALTER TABLE [sune].[kunder] CHECK CONSTRAINT [kunder$kunder_ibfk_1]
+GO
+ALTER TABLE [sune].[personale]  WITH NOCHECK ADD  CONSTRAINT [personale$personale_ibfk_1] FOREIGN KEY([hotelID])
+REFERENCES [sune].[hoteller] ([hotelID])
+GO
+ALTER TABLE [sune].[personale] CHECK CONSTRAINT [personale$personale_ibfk_1]
+GO
+ALTER TABLE [sune].[rum]  WITH NOCHECK ADD  CONSTRAINT [rum$rum_ibfk_1] FOREIGN KEY([hotelID])
+REFERENCES [sune].[hoteller] ([hotelID])
+GO
+ALTER TABLE [sune].[rum] CHECK CONSTRAINT [rum$rum_ibfk_1]
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_SSMA_SOURCE', @value=N'sune.bookinger' , @level0type=N'SCHEMA',@level0name=N'sune', @level1type=N'TABLE',@level1name=N'bookinger'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_SSMA_SOURCE', @value=N'sune.cykel' , @level0type=N'SCHEMA',@level0name=N'sune', @level1type=N'TABLE',@level1name=N'cykel'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_SSMA_SOURCE', @value=N'sune.cykel_booking' , @level0type=N'SCHEMA',@level0name=N'sune', @level1type=N'TABLE',@level1name=N'cykel_booking'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_SSMA_SOURCE', @value=N'sune.hoteljob' , @level0type=N'SCHEMA',@level0name=N'sune', @level1type=N'TABLE',@level1name=N'hoteljob'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_SSMA_SOURCE', @value=N'sune.hoteller' , @level0type=N'SCHEMA',@level0name=N'sune', @level1type=N'TABLE',@level1name=N'hoteller'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_SSMA_SOURCE', @value=N'sune.konference' , @level0type=N'SCHEMA',@level0name=N'sune', @level1type=N'TABLE',@level1name=N'konference'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_SSMA_SOURCE', @value=N'sune.konference_booking' , @level0type=N'SCHEMA',@level0name=N'sune', @level1type=N'TABLE',@level1name=N'konference_booking'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_SSMA_SOURCE', @value=N'sune.kunder' , @level0type=N'SCHEMA',@level0name=N'sune', @level1type=N'TABLE',@level1name=N'kunder'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_SSMA_SOURCE', @value=N'sune.personale' , @level0type=N'SCHEMA',@level0name=N'sune', @level1type=N'TABLE',@level1name=N'personale'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_SSMA_SOURCE', @value=N'sune.postnummer' , @level0type=N'SCHEMA',@level0name=N'sune', @level1type=N'TABLE',@level1name=N'postnummer'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_SSMA_SOURCE', @value=N'sune.rabat' , @level0type=N'SCHEMA',@level0name=N'sune', @level1type=N'TABLE',@level1name=N'rabat'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_SSMA_SOURCE', @value=N'sune.rum' , @level0type=N'SCHEMA',@level0name=N'sune', @level1type=N'TABLE',@level1name=N'rum'
+GO
